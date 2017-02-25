@@ -12,5 +12,31 @@
                 <li for(color in data.colors)>${color}</li>
             </ul>
         </section>
+        <var watchers=Promise.all([data.promise1, data.promise2]) />
+        <await(response from watchers) client-reorder=true>
+            <await-placeholder>
+                Loading data...
+            </await-placeholder>
+            <await-error>
+                An error occurred!
+            </await-error>
+            <await-timeout>
+                A timeout occurred!
+            </await-timeout>
+
+            <h3>Promise1</h3>
+            <section>
+                <ul>
+                    <li for(cat in response[0])>${cat.name}</li>
+                </ul>
+            </section>
+            <h3>Promise2</h3>
+            <section>
+                <ul>
+                    <li for(cat2 in response[0])>${cat2.name}</li>
+                </ul>
+            </section>
+        </await>
+        <await-reorderer/>
     </body>
 </html>
